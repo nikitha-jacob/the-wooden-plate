@@ -5,6 +5,14 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import flash
 
+gallery_images = [
+    "/static/images/img1.jpeg",
+    "/static/images/img2.jpeg",
+    "/static/images/img3.jpeg",
+    "/static/images/img4.jpeg",
+    "/static/images/img5.jpg",
+    "/static/images/img6.jpg"
+]
 app=Flask(__name__)
 app.secret_key = 'WOODENPLATERESTAURANT'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///restaurant.db'
@@ -128,4 +136,7 @@ def logout():
     logout_user()
     return redirect(url_for('logout'))
 
+@app.route('/gallery')
+def gallery():
+    return render_template("gallery.html", images=gallery_images)
 app.run(debug=True)
