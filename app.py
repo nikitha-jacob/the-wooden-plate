@@ -27,18 +27,7 @@ db.create_all()
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-menu_items = [
-    {"name": "Burger", "price": 150},
-    {"name": "Pizza", "price": 300},
-    {"name": "Pasta", "price": 180},
-    {"name": "French Fries", "price": 100},
-    {"name": "Grilled Chicken", "price": 250},
-    {"name": "Cheese Sandwich", "price": 120},
-    {"name": "Fish and Chips", "price": 220},
-    {"name": "Veg Burger", "price": 130},
-    {"name": "Soft Drink", "price": 50},
-    {"name": "Ice Cream", "price": 90}
-]
+session={}
 
 @app.route('/')
 def home():
@@ -102,19 +91,32 @@ def booking_details():
 
 @app.route('/place_order', methods=['GET', 'POST'])
 def place_order():
+    menu_items = [
+        {"id": 1, "name": "Pasta", "price": 200},
+        {"id": 2, "name": "Pizza", "price": 300},
+        {"id": 3, "name": "Burger", "price": 150},
+        {"id": 4, "name": "Salad", "price": 100},
+        {"id": 5, "name": "Soup", "price": 120},
+        {"id": 6, "name": "Sandwich", "price": 180},
+        {"id": 7, "name": "Fries", "price": 90},
+        {"id": 8, "name": "Ice Cream", "price": 80},
+        {"id": 9, "name": "Coffee", "price": 60},
+        {"id": 10, "name": "Juice", "price": 70},
+    ]
     if request.method == 'POST':
-        order = []
+        order = {}
+        total_price = 0
         for item in menu_items:
-            quantity = int(request.form.get(f'quantity_{item["name"]}', 0))
-            if quantity > 0:
-                order.append({"name": item["name"], "price": item["price"], "quantity": quantity})
-        return redirect(url_for('order_details', order=order))
+            quantity = request.form.get(f'quantity_{item["id"]}')
+            if quantity and int(quantity) > 0:
+                order[item["name"]] = int(quantity)
+                total_price += item["price"] * int(quantity)
+        return redirect(url_for('order_details'))
     return render_template('place_order.html', menu_items=menu_items)
 
-@app.route('/order_details')
+@app.route('/order', methods=['GET','POST'])
 def order_details():
-    order = request.args.get('order')
-    return render_template('order_details.html', order=order)
+    return render_template('order_details.html')
 
 @app.route('/profile')
 def profile():
