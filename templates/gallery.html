@@ -1,23 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
-</head>
-<body>
-    <h1>Restaurant Gallery</h1>
-    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td align="center" style="padding: 0;"><img src="{{ url_for('static', filename='images/img1.jpeg') }}" alt="Image 1" width="33.33%" style="margin: 0; border: none;"></td>
-            <td align="center" style="padding: 0;"><img src="{{ url_for('static', filename='images/img2.jpeg') }}" alt="Image 2" width="33.33%" style="margin: 0; border: none;"></td>
-            <td align="center" style="padding: 0;"><img src="{{ url_for('static', filename='images/img3.jpeg') }}" alt="Image 3" width="33.33%" style="margin: 0; border: none;"></td>
-        </tr>
-        <tr>
-            <td align="center" style="padding: 0;"><img src="{{ url_for('static', filename='images/img4.jpeg') }}" alt="Image 4" width="33.33%" style="margin: 0; border: none;"></td>
-            <td align="center" style="padding: 0;"><img src="{{ url_for('static', filename='images/img5.jpg') }}" alt="Image 5" width="33.33%" style="margin: 0; border: none;"></td>
-            <td align="center" style="padding: 0;"><img src="{{ url_for('static', filename='images/img6.jpg') }}" alt="Image 6" width="33.33%" style="margin: 0; border: none;"></td>
-        </tr>
-    </table>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Restaurant Gallery</h1>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img src="{{ url_for('static', filename='images/img1.jpeg') }}" class="card-img-top" alt="Image 1">
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img src="{{ url_for('static', filename='images/img2.jpeg') }}" class="card-img-top" alt="Image 2">
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img src="{{ url_for('static', filename='images/img3.jpeg') }}" class="card-img-top" alt="Image 3">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img src="{{ url_for('static', filename='images/img4.jpeg') }}" class="card-img-top" alt="Image 4">
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img src="{{ url_for('static', filename='images/img5.jpg') }}" class="card-img-top" alt="Image 5">
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img src="{{ url_for('static', filename='images/img6.jpg') }}" class="card-img-top" alt="Image 6">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
