@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 class="text-center">Booking Confirmation</h2>
+  <hr>
+
+  <div class="container">
+    <h4>Your Booking Details:</h4>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Number of People:</strong> {{ num_people }}</li>
+      <li class="list-group-item"><strong>Date:</strong> {{ date }}</li>
+      <li class="list-group-item"><strong>Time:</strong> {{ time }}</li>
+      <li class="list-group-item"><strong>Additional Notes:</strong> {{ notes if notes else 'No additional notes' }}</li>
+    </ul>
+
+    <div class="text-center mt-3">
+      <a href="{{ url_for('home') }}" class="btn btn-primary">Back to Home</a>
+    </div>
+  </div>
+
+{% endblock %}

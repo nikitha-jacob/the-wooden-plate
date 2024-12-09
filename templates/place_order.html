@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-gray mb-4">Place Your Order</h1>
+    <form method="POST" action="/order">
+        <div class="row">
+            {% for dish in menu_items %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm bg-light text-dark">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ dish.name }}</h5>
+                        <p class="card-text">Price: Rs. {{ dish.price }}</p>
+                        <label for="quantity_{{ dish.id }}">Quantity:</label>
+                        <input type="number" id="quantity_{{ dish.id }}" name="quantity_{{ dish.id }}" class="form-control mb-2" min="0" value="0">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success btn-lg">Checkout</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
